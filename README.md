@@ -66,19 +66,30 @@ Request:
 json
 Copy code
 POST /api/v1/public/register
+
 {
+
    "firstName": "John",
+
    "lastName": "Doe",
+
    "email": "john.doe@example.com",
+
    "password": "password123"
+
 }
+
 Response:
 
 json
 Copy code
+
 {
+
    "message": "User registered successfully!"
+
 }
+
 
 Login Example:
 Request:
@@ -88,21 +99,32 @@ Copy code
 POST /api/v1/public/login
 
 {
+
    "email": "john.doe@example.com",
+
    "password": "password123"
+
 }
+
 
 Response:
 
 json
 Copy code
 {
+
    "message": "Login successful!",
+
    "firstName": "John",
+
    "lastName": "Doe",
+
    "email": "john.doe@example.com",
+
    "token": "your_jwt_token_here"
+
 }
+
 
 Credits
 
