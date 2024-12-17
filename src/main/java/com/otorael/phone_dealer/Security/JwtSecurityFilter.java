@@ -28,7 +28,11 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
     @Value("${jwt.secretKey}")
     public String secretKey;
 
-    // Set for blacklisted tokens
+    /**
+     *
+     * Set for blacklisted tokens
+     *
+     */
     private static final Set<String> blackListingToken = new HashSet<>();
 
     /**
