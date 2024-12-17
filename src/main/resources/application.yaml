@@ -1,0 +1,30 @@
+server:
+  port: 21120 # Define the port your Spring Boot application will run on
+
+spring:
+  output:
+    ansi:
+      enabled: always # Options: always, never, detect
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/phonery?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver # Ensure the MySQL JDBC driver is explicitly defined
+    hikari:
+      maximum-pool-size: 10 # Optional: Set maximum connection pool size
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect # Explicitly define Hibernate dialect
+    hibernate:
+      ddl-auto: create # Automatically updates the schema. Change to 'validate' or 'none' in production
+      show-sql: true   # Logs SQL queries for debugging
+    open-in-view: false # Disable Open-In-View to avoid LazyInitializationExceptions
+
+  logging:
+    level:
+      org:
+        hibernate: INFO # Limit verbosity of Hibernate logs to essential information
+
+jwt:
+  secretKey: RttUNYyuIghUYG678787YJgh6Gr6t89ujk90uI98Uk89y78tyn6
