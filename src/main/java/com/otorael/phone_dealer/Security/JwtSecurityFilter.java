@@ -31,16 +31,34 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
     // Set for blacklisted tokens
     private static final Set<String> blackListingToken = new HashSet<>();
 
-    // Check if the token is blacklisted
+    /**
+     * Checks if the provided token is blacklisted.
+     *
+     * @param token The token to check.
+     * @return true if the token is blacklisted, otherwise false.
+     */
     public boolean isTokenBlacklisted(String token){
         return blackListingToken.contains(token);
     }
 
-    // Blacklist a token when it needs to be invalidated
+    /**
+     * Adds the provided token to the blacklist.
+     *
+     * @param token The token to add to the blacklist.
+     */
     public static void blackListToken(String token){
         blackListingToken.add(token);
     }
 
+    /**
+     * Filters the request for JWT token validation and sets the authentication.
+     *
+     * @param request  The incoming HTTP request.
+     * @param response The HTTP response.
+     * @param filterChain The filter chain to proceed with.
+     * @throws ServletException If there is a servlet exception.
+     * @throws IOException If there is an I/O exception.
+     */
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
@@ -88,6 +106,7 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             } catch (Exception err){
+                // Log the error when the token is invalid
                 System.out.println("\u001B[32mIssue arisen: \u001B[0m"); // Red
                 System.out.println("\u001B[31mInvalid token: \u001B[0m" + err.getMessage()); // Green
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token: " + err.getMessage());
@@ -99,7 +118,11 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-
+    /**
+     * Returns a password encoder bean for secure password handling.
+     *
+     * @return a PasswordEncoder configured with BCryptPasswordEncoder.
+     */
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
