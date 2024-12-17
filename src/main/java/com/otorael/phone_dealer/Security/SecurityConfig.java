@@ -13,7 +13,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // Injecting JwtSecurityFilter which handles JWT token validation
+    /**
+     *
+     * Injecting JwtSecurityFilter which handles JWT token validation.
+     *
+     */
     private final JwtSecurityFilter jwtSecurityFilter;
 
     public SecurityConfig(JwtSecurityFilter jwtSecurityFilter) {
