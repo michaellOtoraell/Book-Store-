@@ -79,16 +79,19 @@ Copy code
 {
    "message": "User registered successfully!"
 }
+
 Login Example:
 Request:
 
 json
 Copy code
 POST /api/v1/public/login
+
 {
    "email": "john.doe@example.com",
    "password": "password123"
 }
+
 Response:
 
 json
@@ -100,11 +103,16 @@ Copy code
    "email": "john.doe@example.com",
    "token": "your_jwt_token_here"
 }
+
 Credits
+
 Developer: Michael Otorael (Michael O.)
+
 Contact: michaelotorael4@gmail.com
 
+
 All rights reserved © 2024
+
 
 License
 This project is proprietary software. Redistribution and modifications are not allowed without explicit permission.
